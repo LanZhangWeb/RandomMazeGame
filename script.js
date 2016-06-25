@@ -31,61 +31,55 @@ var maze = (function(){
         cellPath = [],
         cellVisited,
         cellStart,
-        mazeRow = 30,
-        mazeCol = 30;
+        rowCells = 20,
+        columnCells = 20,
+        cellWidth = 25,
+        cellHeight = 25,
+        mazeWidth = columnCells * cellWidth,
+        mazeHeight = rowCells * cellHeight;
+
+    var canvas = document.getElementById('maze');
+    var ctx = canvas.getContext('2d');
+    ctx.strokeStyle = 'grey';
+    ctx.fillStyle = 'blue';
+    canvas.width = columnCells * cellWidth;
+    canvas.height = rowCells * cellHeight;
 
     function mazeStart() {
         cellStart = {
-            x: maze.random(mazeRow),
-            y: maze.random(mazeCol),
+            x: maze.random(rowCells),
+            y: maze.random(columnCells),
             visited: 1
         };
         return cellStart;
     }
 
     function mazeInit() {
-        for (var x = 0; x < mazeRow; x++) {
-            for (var y = 0; y < mazeCol; y++) {
+        for (var x = 0; x < rowCells; x++) {
+            for (var y = 0; y < columnCells; y++) {
 
             }
         }
     }
+    
 
-    function nextStep() {
-
+    function drawLine(x1, y1, x2, y2) {
+        ctx.beginPath();
+        ctx.moveTo(x1, y1);
+        ctx.lineTo(x2, y2);
+        ctx.stroke();
     }
 
-
-    function drowMaze() {
-        this.canvas = document.getElementById('maze');
-        this.ctx = this.canvas.getContext('2d');
-        this.width = this.canvas.width;
-        this.height = this.canvas.height;
-        this.rowCells = 30;
-        this.columnCells = 30;
-        this.cellWidth = this.width / this.rowCells;
-        this.cellHeight = this.height / this.columnCells;
-
-
-        var self = this;
-
-        return {
-            drawLine: function(x1, y1, x2, y2) {
-                self.ctx.beginPath();
-                self.ctx.moveTo(x1, y1);
-                self.ctx.lineTo(x2, y2);
-                self.ctx.stroke();
-            },
-
-            drawBorders: function() {
-                this.drawLine(0, 0, self.width, 0);
-                this.drawLine(0, 0, 0, self.height);
-                this.drawLine(0, self.height, self.width, self.height);
-                this.drawLine(0, self.width, self.width, self.height);
-            }
+    function drawAllLines() {
+        for (var i = 0; i < rowCells + 1; i++) {
+            drawLine(i*cellHeight, 0, i*cellHeight, mazeWidth);
         }
-
+        for (var j = 0; j < columnCells + 1; j++) {
+            drawLine(0, j*cellWidth, mazeHeight, j*cellWidth);
+        }
     }
+
+    drawAllLines();
 
 
 }());
