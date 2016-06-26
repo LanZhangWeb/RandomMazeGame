@@ -51,7 +51,7 @@ var maze = (function(){
         cell[row][col] = 1;
         currentCell = [row, col];
         cellStack.push(currentCell);
-
+        return currentCell;
     }
 
     function mazeInit() {
