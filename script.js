@@ -57,9 +57,9 @@ var maze = (function(){
     function mazeInit() {
         var cell = [],
             cellInfo = [];
-        for (var row = 0; row < rowCells; rowx++) {
+        for (var row = 0; row < rowCells;rowx++) {
             cell[row] = [];
-            cellInfo[row] = [];
+            cellInfo = [];
             for (var col = 0; col < columnCells; col++) {
                 cell[row][col] = 0;
                 cellInfo[row][col] = {visited: 0, wallH: 1, wallV: 1};
