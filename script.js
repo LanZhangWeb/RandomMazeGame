@@ -79,6 +79,10 @@ var maze = (function(){
         }
     }
 
+    function clearMaze() {
+        ctx.clearRect(0, 0, mazeWidth, mazeHeight);
+    }
+
     drawAllLines();
 
 
