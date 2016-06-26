@@ -8,9 +8,55 @@ body {
     align-items: center;
     justify-content: center;
     height: 600px;
+    background: #343838;
 }
 
 .container {
     width: 500px;
     height: 500px;
+}
+
+.buttons {
+    display: flex;
+    flex-direction: column;
+    margin-left: 20px;
+}
+
+button {
+    background-color: #343838;
+    border: 2px solid #00B4CC;
+    color: white;
+    padding: 5px 5px;
+    font-size: 10px;
+    text-align: center;
+    margin: 10px auto;
+    width: 140px;
+    height: 40px;
+    cursor: pointer;
+    transition: all 0.5s;
+}
+
+button span {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+}
+
+button span:after {
+    content: '>>';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -20px;
+    transition: 0.5s;
+}
+
+button:hover span {
+    padding-right: 25px;
+}
+
+button:hover span:after {
+    opacity: 1;
+    right: 0;
 }

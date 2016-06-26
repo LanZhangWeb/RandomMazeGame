@@ -38,12 +38,12 @@ var maze = (function(){
         mazeWidth = columnCells * cellWidth,
         mazeHeight = rowCells * cellHeight;
 
-    var canvas = document.getElementById('maze');
-    var ctx = canvas.getContext('2d');
-    ctx.strokeStyle = 'grey';
-    ctx.fillStyle = 'blue';
-    canvas.width = columnCells * cellWidth;
-    canvas.height = rowCells * cellHeight;
+    var canvas = document.getElementById("maze");
+    var ctx = canvas.getContext("2d");
+    ctx.strokeStyle = '#005F6B';
+    ctx.fillStyle = '#00B4CC';
+    ctx.lineWidth = 2;
+
 
     function mazeStart() {
         cellStart = {
@@ -61,7 +61,7 @@ var maze = (function(){
             }
         }
     }
-    
+
 
     function drawLine(x1, y1, x2, y2) {
         ctx.beginPath();
