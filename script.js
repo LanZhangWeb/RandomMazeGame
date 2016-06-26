@@ -11,10 +11,9 @@ var maze = (function(){
 
     return {
 
-        random: function(num){
+        random: function(num) {
             return Math.floor(Math.random() * num);
-        }
-
+        };
 
 
     }
@@ -28,11 +27,10 @@ var maze = (function(){
 // Controller
 (function(){
     var cell = [],
-        cellWalls = [];
+        cellWalls = [],
+        currentCell = [],
         cellStack = [],
         cellPath = [],
-        cellVisited,
-        cellStart,
         rowCells = 20,
         columnCells = 20,
         cellWidth = 25,
@@ -47,13 +45,13 @@ var maze = (function(){
     ctx.lineWidth = 2;
 
 
-    function mazeStart() {
-        cellStart = {
-            x: maze.random(rowCells),
-            y: maze.random(columnCells),
-            visited: 1
-        };
-        return cellStart;
+    function cellStart() {
+        var row = maze.random(rowCells),
+            col = maze.random(columnCells);
+        cell[row][col] = 1;
+        currentCell = [row, col];
+        cellStack.push(currentCell);
+
     }
 
     function mazeInit() {
