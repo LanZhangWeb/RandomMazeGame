@@ -27,7 +27,9 @@ var maze = (function(){
 
 // Controller
 (function(){
-    var cellStack = [],
+    var cell = [],
+        cellWalls = [];
+        cellStack = [],
         cellPath = [],
         cellVisited,
         cellStart,
@@ -55,17 +57,16 @@ var maze = (function(){
     }
 
     function mazeInit() {
-        var cell = [],
-            cellInfo = [];
         for (var row = 0; row < rowCells; row++) {
             cell[row] = [];
-            cellInfo[row] = [];
+            cellWalls[row] = [];
             for (var col = 0; col < columnCells; col++) {
                 cell[row][col] = 0;
-                cellInfo[row][col] = {visited: 0, wallH: 1, wallV: 1};
+                cellWalls[row][col] = [1, 1, 1, 1];
             }
         }
     }
+
 
 
     function drawLine(x1, y1, x2, y2) {
