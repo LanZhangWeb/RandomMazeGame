@@ -65,9 +65,9 @@ var maze = (function(){
         return currentCell;
     }
 
-    function neighbourCells() {
-        var row = currentCell[0],
-            col = currentCell[1];
+    function neighbourCells(position) {
+        var row = position[0],
+            col = position[1];
         neighbourStack = [];
         if (row - 1 >= 0 && cell[row - 1][col] === 0) {
             neighbourStack.push([row - 1, col, N]);
