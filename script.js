@@ -88,6 +88,30 @@ var maze = (function(){
         return neighbourStack;
     }
 
+    function nextCell() {
+        var neighbourNum,
+            random,
+            tempCell;
+        if (checkCellVisited()) {
+            neighbourCells(currentCell);
+            neighbourNum = neighbourStack.length;
+            if (neighbourNum !== 0) {
+                random = maze.random(neighbourNum); // Random number from 0 to neighbourStack.length-1
+                tempCell = neighbourStack[random];
+                var row = tempCell[0],
+                    col = tempCell[1];
+                cell[row][col] = 1;
+                currentCell = [row, col];
+                cellStack.push(currentCell);
+            } else {
+                cellStack.pop();
+                var stackNum = cellStack.length;
+                if (stackNum !== 0 ) {
+                    currentCell = cellStack[stackNum-1];
+                }
+            }
+        }
+    }
 
     function drawLine(x1, y1, x2, y2) {
         ctx.beginPath();
