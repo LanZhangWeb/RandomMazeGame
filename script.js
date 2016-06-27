@@ -84,6 +84,10 @@ var maze = (function(){
         return neighbourStack;
     }
 
+    function checkCellVisited() {
+        return cell.indexOf(0) !== -1 ;
+    }
+
 
     function drawLine(x1, y1, x2, y2) {
         ctx.beginPath();
