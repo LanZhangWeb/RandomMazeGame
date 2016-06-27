@@ -70,13 +70,13 @@ var maze = (function(){
             col = currentCell[1];
         neighbourStack = [];
         if (row - 1 >= 0 && cell[row - 1][col] === 0) {
-            neighbourStack.push([row - 1, col]);
+            neighbourStack.push([row - 1, col, N]);
         } else if (col + 1 < columnCells && cell[row][col + 1] === 0) {
-            neighbourStack.push([row, col + 1]);
+            neighbourStack.push([row, col + 1, E]);
         } else if (row + 1 < rowCells && cell[row + 1][col] === 0){
-            neighbourStack.push([row + 1, col]);
+            neighbourStack.push([row + 1, col, S]);
         } else if (col - 1 >= 0 && cell[row][col - 1] === 0){
-            neighbourStack.push([row, col - 1]);
+            neighbourStack.push([row, col - 1, W]);
         }
         return neighbourStack;
     }
