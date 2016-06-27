@@ -65,6 +65,10 @@ var maze = (function(){
         return currentCell;
     }
 
+    function checkCellVisited() {
+        return cell.indexOf(0) !== -1 ;
+    }
+
     function neighbourCells(position) {
         var row = position[0],
             col = position[1];
