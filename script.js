@@ -67,7 +67,7 @@ var maze = (function(){
 
     function checkCellVisited() {
         return cell.indexOf(0) !== -1 ;
-    }
+    } // return false if every cell has been visited.
 
     function neighbourCells(position) {
         var row = position[0],
