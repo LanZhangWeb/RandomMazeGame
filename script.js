@@ -13,7 +13,7 @@ var maze = (function(){
 
         random: function(num) {
             return Math.floor(Math.random() * num);
-        };
+        }
 
 
     }
@@ -31,6 +31,7 @@ var maze = (function(){
         currentCell = [],
         cellStack = [],
         cellPath = [],
+        neighbourStack = [],
         rowCells = 20,
         columnCells = 20,
         cellWidth = 25,
@@ -44,16 +45,6 @@ var maze = (function(){
     ctx.fillStyle = '#00B4CC';
     ctx.lineWidth = 2;
 
-
-    function cellStart() {
-        var row = maze.random(rowCells),
-            col = maze.random(columnCells);
-        cell[row][col] = 1;
-        currentCell = [row, col];
-        cellStack.push(currentCell);
-        return currentCell;
-    }
-
     function mazeInit() {
         for (var row = 0; row < rowCells; row++) {
             cell[row] = [];
@@ -65,7 +56,30 @@ var maze = (function(){
         }
     }
 
+    function cellStart() {
+        var row = maze.random(rowCells),
+            col = maze.random(columnCells);
+        cell[row][col] = 1;
+        currentCell = [row, col];
+        cellStack.push(currentCell);
+        return currentCell;
+    }
 
+    function neighbourCells() {
+        var row = currentCell[0],
+            col = currentCell[1];
+        neighbourStack = [];
+        if (row - 1 >= 0 && cell[row - 1][col] === 0) {
+            neighbourStack.push([row - 1, col]);
+        } else if (col + 1 < columnCells && cell[row][col + 1] === 0) {
+            neighbourStack.push([row, col + 1]);
+        } else if (row + 1 < rowCells && cell[row + 1][col] === 0){
+            neighbourStack.push([row + 1, col]);
+        } else if (col - 1 >= 0 && cell[row][col - 1] === 0){
+            neighbourStack.push([row, col - 1]);
+        }
+        return neighbourStack;
+    }
 
     function drawLine(x1, y1, x2, y2) {
         ctx.beginPath();
