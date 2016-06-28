@@ -72,16 +72,16 @@ var maze = (function(){
             col = position[1];
         neighbourStack = [];
         if (row - 1 >= 0 && cell[row - 1][col] === 0) {
-            neighbourStack.push([row - 1, col, N]);
+            neighbourStack.push([row - 1, col, 'N']);
         }
         if (col + 1 < columnCells && cell[row][col + 1] === 0) {
-            neighbourStack.push([row, col + 1, E]);
+            neighbourStack.push([row, col + 1, 'E']);
         }
         if (row + 1 < rowCells && cell[row + 1][col] === 0){
-            neighbourStack.push([row + 1, col, S]);
+            neighbourStack.push([row + 1, col, 'S']);
         }
         if (col - 1 >= 0 && cell[row][col - 1] === 0){
-            neighbourStack.push([row, col - 1, W]);
+            neighbourStack.push([row, col - 1, 'W']);
         }
         return neighbourStack;
     }
@@ -118,19 +118,19 @@ var maze = (function(){
         var currentWall = cellWalls[x][y],
             nextWall = cellWalls[i][j];
         switch (direc) {
-            case N:
+            case 'N':
                 currentWall[0] = 0;
                 nextWall[2] = 0;
                 break;
-            case E:
+            case 'E':
                 currentWall[1] = 0;
                 nextWall[3] = 0;
                 break;
-            case S:
+            case 'S':
                 currentWall[2] = 0;
                 nextWall[0] = 0;
                 break;
-            case W:
+            case 'W':
                 currentWall[3] = 0;
                 nextWall[1] = 0;
                 break;
