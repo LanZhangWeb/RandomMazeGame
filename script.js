@@ -99,7 +99,7 @@ var maze = (function(){
                 var row = tempCell[0],
                     col = tempCell[1],
                     direction = tempCell[2];
-                nextDirection(direction, currentCell[0], currentCell[1], row, col);// Change the status of current and next cell wall when neighbour founded.
+                wallValue(direction, currentCell[0], currentCell[1], row, col);// Change the status of current and next cell wall when neighbour founded.
                 cell[row][col] = 1;
                 currentCell = [row, col];
                 cellStack.push(currentCell);
