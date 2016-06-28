@@ -156,8 +156,8 @@ var maze = (function(){
         }
     }
 
-    function clearMaze() {
-        ctx.clearRect(0, 0, mazeWidth, mazeHeight);
+    function clearMaze(width, height, rowmax, colmax) {
+        ctx.clearRect(0, 0, colmax * width, rowmax * height);
     }
 
     function drawWalls(wall, width, height, rowmax, colmax) {
