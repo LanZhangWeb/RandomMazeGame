@@ -160,9 +160,9 @@ var maze = (function(){
         ctx.clearRect(0, 0, mazeWidth, mazeHeight);
     }
 
-    function drawWalls(wall, width, height) {
-        for (var row = 0; row < rowCells; row++){
-            for (var col = 0; col < columnCells; col++){
+    function drawWalls(wall, width, height, rowmax, colmax) {
+        for (var row = 0; row < rowmax; row++){
+            for (var col = 0; col < colmax; col++){
                 var x = col * width,
                     y = row * height;
                 if (wall[row][col][0] === 1) {
@@ -180,6 +180,7 @@ var maze = (function(){
             }
         }
     }
+
 
     drawAllLines();
 
