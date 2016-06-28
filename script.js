@@ -3,7 +3,9 @@
  */
 
 // Common lib
-
+var $ = function(id) {
+    return document.getElementById(id.substr(1));
+};
 
 // Model
 var maze = (function(){
