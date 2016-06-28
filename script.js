@@ -147,12 +147,12 @@ var maze = (function(){
         ctx.stroke();
     }
 
-    function drawAllLines() {
-        for (var i = 0; i < rowCells + 1; i++) {
-            drawLine(i*cellHeight, 0, i*cellHeight, mazeWidth);
+    function drawAllLines(rowmax, colmax, width, height) {
+        for (var i = 0; i < rowmax + 1; i++) {
+            drawLine(i * height, 0, i * height, colmax * width);
         }
-        for (var j = 0; j < columnCells + 1; j++) {
-            drawLine(0, j*cellWidth, mazeHeight, j*cellWidth);
+        for (var j = 0; j < colmax + 1; j++) {
+            drawLine(0, j * width, rowmax * height, j * width);
         }
     }
 
@@ -182,7 +182,7 @@ var maze = (function(){
     }
 
 
-    drawAllLines();
+    drawAllLines(rowCells, columnCells, cellWidth, cellHeight);
 
 
 }());
