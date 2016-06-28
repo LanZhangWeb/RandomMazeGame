@@ -160,6 +160,26 @@ var maze = (function(){
         ctx.clearRect(0, 0, mazeWidth, mazeHeight);
     }
 
+    function drawWalls(wall, width, height) {
+        for (var row = 0; row < rowCells; row++){
+            for (var col = 0; col < columnCells; col++){
+                var x = col * width,
+                    y = row * height;
+                if (wall[row][col][0] === 1) {
+                    drawLine(x, y, x + width, y);
+                }
+                if (wall[row][col][1] === 1) {
+                    drawLine(x + width, y, x + width, y + height);
+                }
+                if (wall[row][col][2] === 1){
+                    drawLine(x, y + height, x + width, y + height);
+                }
+                if (wall[row][col][3] === 1){
+                    drawLine(x, y, x, y + height);
+                }
+            }
+        }
+    }
 
     drawAllLines();
 
