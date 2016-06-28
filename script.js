@@ -35,9 +35,7 @@ var maze = (function(){
         rowCells = 20,
         columnCells = 20,
         cellWidth = 25,
-        cellHeight = 25,
-        mazeWidth = columnCells * cellWidth,
-        mazeHeight = rowCells * cellHeight;
+        cellHeight = 25;
 
     var canvas = document.getElementById("maze");
     var ctx = canvas.getContext("2d");
