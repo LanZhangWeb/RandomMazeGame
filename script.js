@@ -99,7 +99,9 @@ var maze = (function(){
                 random = maze.random(neighbourNum); // Random number from 0 to neighbourStack.length-1
                 tempCell = neighbourStack[random];
                 var row = tempCell[0],
-                    col = tempCell[1];
+                    col = tempCell[1],
+                    direction = tempCell[2];
+                nextDirection(direction, currentCell[0],currentCell[1]);// Change the status of current cell wall when neighbour founded.
                 cell[row][col] = 1;
                 currentCell = [row, col];
                 cellStack.push(currentCell);
@@ -111,6 +113,25 @@ var maze = (function(){
                 }
             }
         }
+    }
+
+    function nextDirection(direc, x, y) {
+        var newWall = cellWalls[x][y];
+        switch (direc) {
+            case N:
+                newWall[0] = 0;
+                break;
+            case E:
+                newWall[1] = 0;
+                break;
+            case S:
+                newWall[2] = 0;
+                break;
+            case W:
+                newWall[3] = 0;
+                break;
+        }
+        cellWalls[x][y] = newWall;
     }
 
     function drawLine(x1, y1, x2, y2) {
@@ -132,6 +153,9 @@ var maze = (function(){
     function clearMaze() {
         ctx.clearRect(0, 0, mazeWidth, mazeHeight);
     }
+
+
+
 
     drawAllLines();
 
