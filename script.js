@@ -34,6 +34,7 @@ var maze = (function(){
         cellStack = [],
         cellPath = [],
         neighbourStack = [],
+        visited = 0,
         rowCells = 20,
         columnCells = 20,
         cellWidth = 25,
@@ -60,14 +61,11 @@ var maze = (function(){
         var row = maze.random(rowmax),
             col = maze.random(colmax);
         cell[row][col] = 1;
+        visited ++;
         currentCell = [row, col];
         cellStack.push(currentCell);
         return currentCell;
     }
-
-    function checkCellVisited() {
-        return cell.indexOf(0) !== -1;
-    } // return false if every cell has been visited.
 
     function neighbourCells(position) {
         var row = position[0],
@@ -92,7 +90,7 @@ var maze = (function(){
         var neighbourNum,
             random,
             tempCell;
-        if (checkCellVisited()) {
+        if (visited <= rowCells * columnCells) {
             neighbourCells(currentCell);
             neighbourNum = neighbourStack.length;
             if (neighbourNum !== 0) {
@@ -103,6 +101,7 @@ var maze = (function(){
                     direction = tempCell[2];
                 wallValue(direction, currentCell[0], currentCell[1], row, col);// Change the status of current and next cell wall when neighbour founded.
                 cell[row][col] = 1;
+                visited ++;
                 currentCell = [row, col];
                 cellStack.push(currentCell);
             } else {
@@ -182,7 +181,7 @@ var maze = (function(){
     }
 
 
-    drawAllLines(rowCells, columnCells, cellWidth, cellHeight);
+/*    drawAllLines(rowCells, columnCells, cellWidth, cellHeight);*/
 
     $('#creatMaze').addEventListener('click', function(){
         clearMaze(cellWidth, cellHeight, rowCells, columnCells);
