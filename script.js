@@ -43,11 +43,11 @@ var maze = (function(){
     ctx.fillStyle = '#00B4CC';
     ctx.lineWidth = 2;
 
-    function mazeInit() {
-        for (var row = 0; row < rowCells; row++) {
+    function mazeInit(rowmax, colmax) {
+        for (var row = 0; row < rowmax; row++) {
             cell[row] = [];
             cellWalls[row] = [];
-            for (var col = 0; col < columnCells; col++) {
+            for (var col = 0; col < colmax; col++) {
                 cell[row][col] = 0;
                 cellWalls[row][col] = [1, 1, 1, 1];
             }
