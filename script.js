@@ -183,7 +183,7 @@ var maze = (function(){
 
     drawAllLines(rowCells, columnCells, cellWidth, cellHeight);
 
-    $('#creatMaze').addEventListener('click', function(){
+    $('#createMaze').addEventListener('click', function(){
         clearMaze(cellWidth, cellHeight, rowCells, columnCells);
         mazeInit(rowCells, columnCells);
         cellStart(rowCells, columnCells);
