@@ -24,8 +24,6 @@ var maze = (function(){
 
 
 
-
-
 // Controller
 (function(){
     var cell = [],
@@ -34,7 +32,6 @@ var maze = (function(){
         cellStack = [],
         cellPath = [],
         neighbourStack = [],
-        visited = 0,
         rowCells = 20,
         columnCells = 20,
         cellWidth = 25,
@@ -61,10 +58,14 @@ var maze = (function(){
         var row = maze.random(rowmax),
             col = maze.random(colmax);
         cell[row][col] = 1;
-        visited ++;
         currentCell = [row, col];
         cellStack.push(currentCell);
         return currentCell;
+    }
+
+    function checkCellVisited() {
+        var str = cell.toString();
+        return str.includes('0');
     }
 
     function neighbourCells(position) {
@@ -90,7 +91,7 @@ var maze = (function(){
         var neighbourNum,
             random,
             tempCell;
-        if (visited <= rowCells * columnCells) {
+        while (checkCellVisited()) {
             neighbourCells(currentCell);
             neighbourNum = neighbourStack.length;
             if (neighbourNum !== 0) {
@@ -101,14 +102,13 @@ var maze = (function(){
                     direction = tempCell[2];
                 wallValue(direction, currentCell[0], currentCell[1], row, col);// Change the status of current and next cell wall when neighbour founded.
                 cell[row][col] = 1;
-                visited ++;
                 currentCell = [row, col];
                 cellStack.push(currentCell);
             } else {
                 cellStack.pop();
                 var stackNum = cellStack.length;
-                if (stackNum !== 0 ) {
-                    currentCell = cellStack[stackNum-1];
+                if (stackNum !== 0) {
+                    currentCell = cellStack[stackNum - 1];
                 }
             }
         }
@@ -181,7 +181,7 @@ var maze = (function(){
     }
 
 
-/*    drawAllLines(rowCells, columnCells, cellWidth, cellHeight);*/
+    drawAllLines(rowCells, columnCells, cellWidth, cellHeight);
 
     $('#creatMaze').addEventListener('click', function(){
         clearMaze(cellWidth, cellHeight, rowCells, columnCells);
