@@ -100,7 +100,7 @@ var maze = (function(){
                 var row = tempCell[0],
                     col = tempCell[1],
                     direction = tempCell[2];
-                wallValue(direction, currentCell[0], currentCell[1], row, col);// Change the status of current and next cell wall when neighbour founded.
+                wallValue(direction, currentCell[0], currentCell[1], row, col, cellWalls);// Change the status of current and next cell wall when neighbour founded.
                 cell[row][col] = 1;
                 currentCell = [row, col];
                 cellStack.push(currentCell);
@@ -114,9 +114,9 @@ var maze = (function(){
         }
     }
 
-    function wallValue(direc, x, y, i, j) {
-        var currentWall = cellWalls[x][y],
-            nextWall = cellWalls[i][j];
+    function wallValue(direc, x, y, i, j, walls) {
+        var currentWall = walls[x][y],
+            nextWall = walls[i][j];
         switch (direc) {
             case 'N':
                 currentWall[0] = 0;
@@ -135,8 +135,9 @@ var maze = (function(){
                 nextWall[1] = 0;
                 break;
         }
-        cellWalls[x][y] = currentWall;
-        cellWalls[i][j] = nextWall;
+        walls[x][y] = currentWall;
+        walls[i][j] = nextWall;
+        return walls;
     }
 
     function drawLine(x1, y1, x2, y2) {
