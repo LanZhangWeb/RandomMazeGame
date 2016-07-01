@@ -73,20 +73,18 @@ var maze = (function(){
     }
 
     function neighbourCells(position) {
-        var row = position[0],
-            col = position[1];
-        var neighbourStack = [];
-        if (row - 1 >= 0 && cell[row - 1][col] === 0) {
-            neighbourStack.push([row - 1, col, 'N']);
-        }
-        if (col + 1 < columnCells && cell[row][col + 1] === 0) {
-            neighbourStack.push([row, col + 1, 'E']);
-        }
-        if (row + 1 < rowCells && cell[row + 1][col] === 0){
-            neighbourStack.push([row + 1, col, 'S']);
-        }
-        if (col - 1 >= 0 && cell[row][col - 1] === 0){
-            neighbourStack.push([row, col - 1, 'W']);
+        var neighbourStack = [],
+            rowOffset = [-1, 0, 1, 0],
+            colOffset = [0, 1, 0, -1],
+            direction = ['N', 'E', 'S', 'W'];
+        for (var i = 0; i < 4; i++) {
+            var targetRow = position[0] + rowOffset[i],
+                targetCol = position[1] + colOffset[i];
+            if ( targetRow >= 0 && targetCol >= 0
+                && targetRow < rowCells && targetCol < columnCells
+                && cell[targetRow][targetCol] === 0){
+                neighbourStack.push([targetRow, targetCol, direction[i]]);
+            }
         }
         return neighbourStack;
     }
