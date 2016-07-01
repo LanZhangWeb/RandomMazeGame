@@ -9,8 +9,7 @@ var $ = function(id) {
 
 // Model
 var maze = (function(){
-    var cell = [];
-
+    
     return {
 
         random: function(num) {
