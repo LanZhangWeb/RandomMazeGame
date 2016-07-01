@@ -15,8 +15,16 @@ var maze = (function(){
 
         random: function(num) {
             return Math.floor(Math.random() * num);
+        },
+        init: function (row, col, data, value) {
+            for (var x = 0; x < row; x++) {
+                data[x] = [];
+                for (var y = 0; y < col; y++) {
+                    data[x][y] = value;
+                }
+            }
+            return data;
         }
-
 
     }
 
@@ -45,10 +53,8 @@ var maze = (function(){
 
     function mazeInit(rowmax, colmax) {
         for (var row = 0; row < rowmax; row++) {
-            cell[row] = [];
             cellWalls[row] = [];
             for (var col = 0; col < colmax; col++) {
-                cell[row][col] = 0;
                 cellWalls[row][col] = [1, 1, 1, 1];
             }
         }
@@ -187,6 +193,7 @@ var maze = (function(){
     $('#createMaze').addEventListener('click', function(){
         clearMaze(cellWidth, cellHeight, rowCells, columnCells);
         mazeInit(rowCells, columnCells);
+        maze.init(rowCells, columnCells, cell, 0);
         cellStart(rowCells, columnCells);
         nextCell();
         drawWalls(cellWalls, cellWidth, cellHeight, rowCells, columnCells);
