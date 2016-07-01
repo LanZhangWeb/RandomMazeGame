@@ -38,7 +38,6 @@ var maze = (function(){
         currentCell = [],
         cellStack = [],
         cellPath = [],
-        neighbourStack = [],
         rowCells = 20,
         columnCells = 20,
         cellWidth = 25,
@@ -76,7 +75,7 @@ var maze = (function(){
     function neighbourCells(position) {
         var row = position[0],
             col = position[1];
-        neighbourStack = [];
+        var neighbourStack = [];
         if (row - 1 >= 0 && cell[row - 1][col] === 0) {
             neighbourStack.push([row - 1, col, 'N']);
         }
@@ -97,7 +96,7 @@ var maze = (function(){
             random,
             tempCell;
         while (checkCellVisited()) {
-            neighbourCells(currentCell);
+            var neighbourStack = neighbourCells(currentCell);
             neighbourNum = neighbourStack.length;
             if (neighbourNum !== 0) {
                 random = maze.random(neighbourNum); // Random number from 0 to neighbourStack.length-1
