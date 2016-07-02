@@ -43,7 +43,7 @@ var maze = (function(){
         cellWidth = 25,
         cellHeight = 25;
 
-    var canvas = document.getElementById("maze");
+    var canvas = $("#maze");
     var ctx = canvas.getContext("2d");
     ctx.strokeStyle = '#005F6B';
     ctx.fillStyle = '#00B4CC';
