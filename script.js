@@ -140,6 +140,24 @@ var maze = (function(){
         return pathStack.push(pathStart);
     }
 
+    function pathChoose(cell) {
+        var row = cell[0],
+            col = cell[1],
+            rowOffset = [-1, 0, 1, 0],
+            colOffset = [0, 1, 0, -1],
+            walls = cellWalls[row][col],
+            nextStack = [];
+        for (var i = 0; i < 4; i++) {
+            if (walls[i] === 0) {
+                var targetRow = row + rowOffset[i],
+                    targetCol = col + colOffset[i],
+                    targetCell = [targetRow, targetCol];
+                nextStack.push(targetCell);
+            }
+        return nextStack;
+        }
+    }
+
     function drawLine(x1, y1, x2, y2) {
         ctx.beginPath();
         ctx.moveTo(x1, y1);
