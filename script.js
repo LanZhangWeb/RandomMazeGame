@@ -133,6 +133,13 @@ var maze = (function(){
         return walls;
     }
 
+    function pathInit() {
+        maze.init(rowCells, columnCells, cellPath, 0);
+        var pathStart = [0, 0],
+            pathStack =[];
+        return pathStack.push(pathStart);
+    }
+    
     function drawLine(x1, y1, x2, y2) {
         ctx.beginPath();
         ctx.moveTo(x1, y1);
@@ -174,7 +181,6 @@ var maze = (function(){
         }
     }
 
-
     drawAllLines(rowCells, columnCells, cellWidth, cellHeight);
 
     $('#createMaze').addEventListener('click', function(){
@@ -185,5 +191,6 @@ var maze = (function(){
         nextCell();
         drawWalls(cellWalls, cellWidth, cellHeight, rowCells, columnCells);
     });
+
 
 }());
