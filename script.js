@@ -137,6 +137,7 @@ var maze = (function(){
         maze.init(rowCells, columnCells, cellPath, 0);
         var pathStart = [0, 0],
             pathStack =[];
+        cellPath[0][0] = 1;
         return pathStack.push(pathStart);
     }
 
@@ -148,15 +149,16 @@ var maze = (function(){
             walls = cellWalls[row][col],
             nextStack = [];
         for (var i = 0; i < 4; i++) {
-            if (walls[i] === 0) {
-                var targetRow = row + rowOffset[i],
-                    targetCol = col + colOffset[i],
-                    targetCell = [targetRow, targetCol];
+            var targetRow = row + rowOffset[i],
+                targetCol = col + colOffset[i],
+                targetCell = [targetRow, targetCol];
+            if (walls[i] === 0 && cellPath[targetRow][targetCol] === 0) {
                 nextStack.push(targetCell);
             }
         return nextStack;
         }
     }
+
 
     function drawLine(x1, y1, x2, y2) {
         ctx.beginPath();
