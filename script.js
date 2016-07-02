@@ -51,9 +51,8 @@ var maze = (function(){
     function cellStart(rowmax, colmax) {
         var row = maze.random(rowmax),
             col = maze.random(colmax),
-            currentCell = [];
+            currentCell = [row, col];
         cell[row][col] = 1;
-        currentCell = [row, col];
         cellStack.push(currentCell);
         return currentCell;
     }
