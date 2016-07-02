@@ -159,6 +159,33 @@ var maze = (function(){
         }
     }
 
+    function nextPath(rowmax, colmax) {
+        var pathStack = pathInit(),
+            currentCell = pathStack[pathStack.length - 1],
+            pathEnd = [rowmax, colmax];
+        while (currentCell !== pathEnd) {
+            var nextStack = pathChoose(currentCell);
+            switch (nextStack.length) {
+                case 0:
+                    pathStack.pop();
+                    var num = pathStack.length;
+                    currentCell = pathStack[num-1];
+                    break;
+                case 1:
+                    currentCell = nextStack;
+                    pathStack.push(currentCell);
+                    cellPath[currentCell[0]][currentCell[1]] = 1;
+                    break;
+                case 2:
+                    var idx = maze.random(2);
+                    currentCell = nextStack[idx];
+                    pathStack.push(currentCell);
+                    cellPath[currentCell[0]][currentCell[1]] = 1;
+                    break;
+            }
+
+        }
+    }
 
     function drawLine(x1, y1, x2, y2) {
         ctx.beginPath();
