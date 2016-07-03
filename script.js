@@ -153,7 +153,9 @@ var maze = (function(){
             var targetRow = row + rowOffset[i],
                 targetCol = col + colOffset[i],
                 targetCell = [targetRow, targetCol];
-            if (walls[i] === 0 && cellPath[targetRow][targetCol] === 0) {
+            if (targetRow >= 0 && targetCol >= 0
+                && targetRow < rowCells && targetCol < columnCells
+                && walls[i] === 0 && cellPath[targetRow][targetCol] === 0) {
                 nextStack.push(targetCell);
             }
         }
@@ -254,5 +256,5 @@ var maze = (function(){
     $('#solveMaze').addEventListener('click', function(){
         drawPath(cellWidth, cellHeight);
     });
-    
+
 }());
