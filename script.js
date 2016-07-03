@@ -138,7 +138,8 @@ var maze = (function(){
         var pathStart = [0, 0],
             pathStack =[];
         cellPath[0][0] = 1;
-        return pathStack.push(pathStart);
+        pathStack.push(pathStart);
+        return pathStack;
     }
 
     function pathChoose(cell) {
@@ -155,8 +156,8 @@ var maze = (function(){
             if (walls[i] === 0 && cellPath[targetRow][targetCol] === 0) {
                 nextStack.push(targetCell);
             }
-        return nextStack;
         }
+        return nextStack;
     }
 
     function nextPath(rowmax, colmax) {
@@ -179,8 +180,8 @@ var maze = (function(){
                     nextCellVisit(currentCell, nextStack[idx], pathStack, cellPath);
                     break;
             }
-
         }
+        return pathStack;
     }
 
     function nextCellVisit(cell, tempstack, stack, cellvisit) {
@@ -239,6 +240,5 @@ var maze = (function(){
         nextCell();
         drawWalls(cellWalls, cellWidth, cellHeight, rowCells, columnCells);
     });
-
 
 }());
