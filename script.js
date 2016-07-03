@@ -175,19 +175,19 @@ var maze = (function(){
                     currentCell = pathStack[num-1];
                     break;
                 case 1:
-                    nextCellVisit(currentCell, nextStack, pathStack, cellPath);
+                    nextCellVisit(currentCell, nextStack, pathStack, cellPath, 0);
                     break;
                 case 2:
                     var idx = maze.random(2);
-                    nextCellVisit(currentCell, nextStack[idx], pathStack, cellPath);
+                    nextCellVisit(currentCell, nextStack, pathStack, cellPath, idx);
                     break;
             }
         }
         return pathStack;
     }
 
-    function nextCellVisit(cell, tempstack, stack, cellvisit) {
-        cell = tempstack;
+    function nextCellVisit(cell, tempstack, stack, cellvisit, idx) {
+        cell = tempstack[idx];
         stack.push(cell);
         cellvisit[cell[0]][cell[1]] = 1;
     }
