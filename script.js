@@ -231,6 +231,16 @@ var maze = (function(){
         }
     }
 
+    function drawPath(width, height) {
+        var pathCell = nextPath(rowCells, columnCells);
+        for ( var i = 0; i < pathCell.length; i++) {
+            var currentCell = pathCell.shift(),
+                row = currentCell[0],
+                col = currentCell[1];
+            ctx.fillRect(row * width, col * height, width, height);
+        }
+    }
+
     drawAllLines(rowCells, columnCells, cellWidth, cellHeight);
 
     $('#createMaze').addEventListener('click', function(){
@@ -241,4 +251,8 @@ var maze = (function(){
         drawWalls(cellWalls, cellWidth, cellHeight, rowCells, columnCells);
     });
 
+    $('#solveMaze').addEventListener('click', function(){
+        drawPath(cellWidth, cellHeight);
+    });
+    
 }());
