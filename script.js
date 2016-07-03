@@ -165,8 +165,8 @@ var maze = (function(){
     function nextPath(rowmax, colmax) {
         var pathStack = pathInit(),
             currentCell = pathStack[pathStack.length - 1],
-            pathEnd = [rowmax, colmax];
-        while (currentCell !== pathEnd) {
+            pathEnd = [rowmax - 1, colmax - 1];
+        while (currentCell.toString() !== pathEnd.toString()) {
             var nextStack = pathChoose(currentCell);
             switch (nextStack.length) {
                 case 0:
@@ -175,11 +175,11 @@ var maze = (function(){
                     currentCell = pathStack[num-1];
                     break;
                 case 1:
-                    nextCellVisit(currentCell, nextStack, pathStack, cellPath, 0);
+                    currentCell = nextCellVisit(currentCell, nextStack, pathStack, cellPath, 0);
                     break;
                 case 2:
                     var idx = maze.random(2);
-                    nextCellVisit(currentCell, nextStack, pathStack, cellPath, idx);
+                    currentCell = nextCellVisit(currentCell, nextStack, pathStack, cellPath, idx);
                     break;
             }
         }
@@ -190,6 +190,7 @@ var maze = (function(){
         cell = tempstack[idx];
         stack.push(cell);
         cellvisit[cell[0]][cell[1]] = 1;
+        return cell;
     }
 
     function drawLine(x1, y1, x2, y2) {
