@@ -45,7 +45,7 @@ var maze = (function(){
     var canvas = $("#maze");
     var ctx = canvas.getContext("2d");
     ctx.strokeStyle = '#005F6B';
-    ctx.fillStyle = '#00B4CC';
+    ctx.fillStyle = 'rgba(0, 180, 204, 0.3)';
     ctx.lineWidth = 2;
 
     function cellStart(rowmax, colmax) {
