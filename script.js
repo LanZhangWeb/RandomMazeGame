@@ -236,11 +236,15 @@ var maze = (function(){
 
     function drawPath(width, height) {
         var pathCell = nextPath(rowCells, columnCells);
-        for ( var i = 0; i < pathCell.length; i++) {
-            var currentCell = pathCell[i],
-                row = currentCell[0],
-                col = currentCell[1];
-            ctx.fillRect(col * width, row * height, width, height);
+        for (var i = 0; i < pathCell.length; i++) {
+            setTimeout(function (num) {
+                return function () {
+                    var currentCell = pathCell[num],
+                        row = currentCell[0],
+                        col = currentCell[1];
+                    return ctx.fillRect(col * width, row * height, width, height);
+                };
+            }(i), 500 * i);
         }
     }
 
