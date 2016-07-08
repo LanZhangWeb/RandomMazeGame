@@ -193,6 +193,13 @@ var maze = (function(){
         return pathStack;
     }
 
+    function entrySet(walls, rowmax, colmax) {
+        var entryWalls = walls;
+        entryWalls[0][0][3] = 0;
+        entryWalls[rowmax - 1][colmax - 1][1] = 0;
+        return entryWalls;
+    }
+
     function drawLine(x1, y1, x2, y2) {
         ctx.beginPath();
         ctx.moveTo(x1, y1);
@@ -255,7 +262,8 @@ var maze = (function(){
         maze.init(rowCells, columnCells, cell, 0);
         maze.init(rowCells, columnCells, cellWalls, [1, 1, 1, 1].slice(0));
         nextCell();
-        drawWalls(cellWalls, cellWidth, cellHeight, rowCells, columnCells);
+        var walls = entrySet(cellWalls, rowCells, columnCells);
+        drawWalls(walls, cellWidth, cellHeight, rowCells, columnCells);
     });
 
     $('#solveMaze').addEventListener('click', function(){
