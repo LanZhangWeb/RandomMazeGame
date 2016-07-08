@@ -104,7 +104,7 @@ var maze = (function(){
             if (neighbourNum !== 0) {
                 var random = maze.random(neighbourNum), // Random number from 0 to neighbourStack.length-1
                     tempCell = neighbourStack[random];
-                wallValue(tempCell[2], currentCell[0], currentCell[1], tempCell[0], tempCell[1], cellWalls);// Change the status of current and next cell wall when neighbour founded.
+                wallValue(currentCell, tempCell, cellWalls);
                 currentCell = maze.nextCell(currentCell, neighbourStack, cellStack, cell, random);
             } else {
                 currentCell = maze.popCell(cellStack, currentCell);
@@ -112,10 +112,15 @@ var maze = (function(){
         }
     }
 
-    function wallValue(direc, curX, curY, nextX, nextY, walls) {
-        var currentWall = walls[curX][curY].slice(0),
-            nextWall = walls[nextX][nextY].slice(0);
-        switch (direc) {
+    function wallValue(curCell, nextCell, walls) {
+        var curRow = curCell[0],
+            curCol = curCell[1],
+            nextRow = nextCell[0],
+            nextCol = nextCell[1],
+            direction = nextCell[2],
+            currentWall = walls[curRow][curCol].slice(0),
+            nextWall = walls[nextRow][nextCol].slice(0);
+        switch (direction) {
             case 'N':
                 currentWall[0] = 0;
                 nextWall[2] = 0;
@@ -133,8 +138,8 @@ var maze = (function(){
                 nextWall[1] = 0;
                 break;
         }
-        walls[curX][curY] = currentWall;
-        walls[nextX][nextY] = nextWall;
+        walls[curRow][curCol] = currentWall;
+        walls[nextRow][nextCol] = nextWall;
     }
 
     function pathInit() {
