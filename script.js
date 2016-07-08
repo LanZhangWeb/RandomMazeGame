@@ -86,7 +86,7 @@ var maze = (function(){
         }
         return neighbourStack;
     }
-
+    
     function nextCell() {
         var neighbourNum,
             random,
@@ -102,9 +102,7 @@ var maze = (function(){
                     col = tempCell[1],
                     direction = tempCell[2];
                 wallValue(direction, currentCell[0], currentCell[1], row, col, cellWalls);// Change the status of current and next cell wall when neighbour founded.
-                cell[row][col] = 1;
-                currentCell = [row, col];
-                cellStack.push(currentCell);
+                currentCell = maze.nextCell(currentCell, neighbourStack, cellStack, cell, random);
             } else {
                 cellStack.pop();
                 var stackNum = cellStack.length;
