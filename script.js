@@ -107,9 +107,9 @@ var maze = (function(){
         }
     }
 
-    function wallValue(direc, x, y, i, j, walls) {
-        var currentWall = walls[x][y].slice(0),
-            nextWall = walls[i][j].slice(0);
+    function wallValue(direc, curX, curY, nextX, nextY, walls) {
+        var currentWall = walls[curX][curY].slice(0),
+            nextWall = walls[nextX][nextY].slice(0);
         switch (direc) {
             case 'N':
                 currentWall[0] = 0;
@@ -128,8 +128,8 @@ var maze = (function(){
                 nextWall[1] = 0;
                 break;
         }
-        walls[x][y] = currentWall;
-        walls[i][j] = nextWall;
+        walls[curX][curY] = currentWall;
+        walls[nextX][nextY] = nextWall;
         return walls;
     }
 
