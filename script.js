@@ -32,6 +32,14 @@ var maze = (function(){
             stack.push(cell);
             cellvisit[row][col] = 1;
             return cell;
+        },
+        popCell: function (stack, cell) {
+            stack.pop();
+            var num = stack.length;
+            if (num != 0) {
+                cell = stack[num - 1];
+            }
+            return cell;
         }
     }
 
@@ -99,11 +107,7 @@ var maze = (function(){
                 wallValue(tempCell[2], currentCell[0], currentCell[1], tempCell[0], tempCell[1], cellWalls);// Change the status of current and next cell wall when neighbour founded.
                 currentCell = maze.nextCell(currentCell, neighbourStack, cellStack, cell, random);
             } else {
-                cellStack.pop();
-                var stackNum = cellStack.length;
-                if (stackNum !== 0) {
-                    currentCell = cellStack[stackNum - 1];
-                }
+                currentCell = maze.popCell(cellStack, currentCell);
             }
         }
     }
@@ -170,9 +174,7 @@ var maze = (function(){
             var nextStack = pathChoose(currentCell);
             switch (nextStack.length) {
                 case 0:
-                    pathStack.pop();
-                    var num = pathStack.length;
-                    currentCell = pathStack[num-1];
+                    currentCell = maze.popCell(pathStack, currentCell);
                     break;
                 case 1:
                     currentCell = maze.nextCell(currentCell, nextStack, pathStack, cellPath, 0);
