@@ -86,22 +86,17 @@ var maze = (function(){
         }
         return neighbourStack;
     }
-    
+
     function nextCell() {
         var neighbourNum,
-            random,
-            tempCell,
             currentCell = cellStart(rowCells, columnCells);
         while (checkCellVisited()) {
             var neighbourStack = neighbourCells(currentCell);
             neighbourNum = neighbourStack.length;
             if (neighbourNum !== 0) {
-                random = maze.random(neighbourNum); // Random number from 0 to neighbourStack.length-1
-                tempCell = neighbourStack[random];
-                var row = tempCell[0],
-                    col = tempCell[1],
-                    direction = tempCell[2];
-                wallValue(direction, currentCell[0], currentCell[1], row, col, cellWalls);// Change the status of current and next cell wall when neighbour founded.
+                var random = maze.random(neighbourNum), // Random number from 0 to neighbourStack.length-1
+                    tempCell = neighbourStack[random];
+                wallValue(tempCell[2], currentCell[0], currentCell[1], tempCell[0], tempCell[1], cellWalls);// Change the status of current and next cell wall when neighbour founded.
                 currentCell = maze.nextCell(currentCell, neighbourStack, cellStack, cell, random);
             } else {
                 cellStack.pop();
@@ -136,7 +131,6 @@ var maze = (function(){
         }
         walls[curX][curY] = currentWall;
         walls[nextX][nextY] = nextWall;
-        return walls;
     }
 
     function pathInit() {
