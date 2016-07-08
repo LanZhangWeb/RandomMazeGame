@@ -23,8 +23,16 @@ var maze = (function(){
                 }
             }
             return data;
+        },
+        nextCell: function (cell, tempstack, stack, cellvisit, idx) {
+            var tempCell = tempstack[idx],
+                row = tempCell[0],
+                col = tempCell[1];
+            cell = [row, col];
+            stack.push(cell);
+            cellvisit[row][col] = 1;
+            return cell;
         }
-
     }
 
 }());
@@ -175,22 +183,15 @@ var maze = (function(){
                     currentCell = pathStack[num-1];
                     break;
                 case 1:
-                    currentCell = nextCellVisit(currentCell, nextStack, pathStack, cellPath, 0);
+                    currentCell = maze.nextCell(currentCell, nextStack, pathStack, cellPath, 0);
                     break;
                 case 2:
                     var idx = maze.random(2);
-                    currentCell = nextCellVisit(currentCell, nextStack, pathStack, cellPath, idx);
+                    currentCell = maze.nextCell(currentCell, nextStack, pathStack, cellPath, idx);
                     break;
             }
         }
         return pathStack;
-    }
-
-    function nextCellVisit(cell, tempstack, stack, cellvisit, idx) {
-        cell = tempstack[idx];
-        stack.push(cell);
-        cellvisit[cell[0]][cell[1]] = 1;
-        return cell;
     }
 
     function drawLine(x1, y1, x2, y2) {
