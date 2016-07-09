@@ -61,7 +61,6 @@ var maze = (function(){
     var canvas = $("#maze");
     var ctx = canvas.getContext("2d");
     ctx.strokeStyle = '#005F6B';
-    ctx.fillStyle = 'rgba(0, 180, 204, 0.4)';
     ctx.lineWidth = 2;
 
     function cellStart(rowmax, colmax) {
@@ -243,6 +242,7 @@ var maze = (function(){
 
     function drawPath(width, height) {
         var pathCell = nextPath(rowCells, columnCells);
+        ctx.fillStyle = 'rgba(0, 180, 204, 0.4)';
         for (var i = 0; i < pathCell.length; i++) {
             setTimeout(function (num) {
                 return function () {
@@ -258,6 +258,7 @@ var maze = (function(){
     function drawPosition(cell, width, height) {
         var x = cell[0],
             y = cell[1];
+        ctx.fillStyle = '#00B4CC';
         ctx.beginPath();
         ctx.arc(x * width + width / 2, y * height + height / 2, 9, 0, 2 * Math.PI);
         ctx.fill();
