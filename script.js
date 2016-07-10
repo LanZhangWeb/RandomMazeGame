@@ -309,4 +309,10 @@ var maze = (function(){
         drawPath(cellWidth, cellHeight);
     });
 
+    document.addEventListener('keydown', function(event){
+        var key = event.keyCode;
+        var currentCell = keyboardPosition([0,0], key, cellWalls, rowCells, columnCells);
+        drawPosition(currentCell, cellWidth, cellHeight);
+    });
+
 }());
