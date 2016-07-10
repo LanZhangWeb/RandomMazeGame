@@ -289,7 +289,7 @@ var maze = (function(){
             y = cell[1];
         ctx.fillStyle = '#00B4CC';
         ctx.beginPath();
-        ctx.arc(x * width + width / 2, y * height + height / 2, 9, 0, 2 * Math.PI);
+        ctx.arc(y * width + width / 2, x * height + height / 2, 9, 0, 2 * Math.PI);
         ctx.fill();
     }
 
