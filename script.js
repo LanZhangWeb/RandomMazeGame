@@ -192,6 +192,35 @@ var maze = (function(){
         return pathStack;
     }
 
+    function keyboardPosition(curCell, keyValue, wallValue, rowmax, colmax) {
+        var row = curCell[0],
+            col = curCell[1],
+            walls = wallValue[row][col];
+        switch (keyValue) {
+            case 38:
+                if (row - 1 >= 0 && walls[0] === 0) {
+                    curCell = [row - 1, col];
+                }
+                break;
+            case 39:
+                if (col + 1 < colmax - 1 && walls[1] === 0) {
+                    curCell = [row, col + 1];
+                }
+                break;
+            case 40:
+                if (row + 1 < rowmax - 1 && walls[2] === 0) {
+                    curCell = [row + 1, col];
+                }
+                break;
+            case 37:
+                if (col - 1 >= 0 && walls[3] === 0) {
+                    curCell = [row, col - 1];
+                }
+                break;
+        }
+        return curCell;
+    }
+
     function entrySet(walls, rowmax, colmax) {
         var entryWalls = walls;
         entryWalls[0][0][3] = 0;
