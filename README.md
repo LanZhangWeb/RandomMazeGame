@@ -1,4 +1,4 @@
-# MouseInMaze
+# Random maze game
 
 ## Description
 Javascript maze game based on depth-first search algorithm
